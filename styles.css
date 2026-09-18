@@ -56,7 +56,7 @@
   .figure img{border-radius:10px;aspect-ratio:3/2;object-fit:cover;width:100%;box-shadow:var(--shadow)}
   .figure figcaption{font-family:var(--mono);font-size:12px;color:var(--mute);margin-top:12px;line-height:1.5}
   .figure figcaption b{color:var(--ink);font-weight:500}
-  .hero .figure::before{content:"";position:absolute;inset:auto -14px -14px auto;width:56%;height:46%;background:var(--copper);border-radius:6px;z-index:-1;opacity:.9}
+  .hero .figure::before{content:"";position:absolute;inset:-14px -14px auto auto;width:56%;height:46%;background:var(--copper);border-radius:6px;z-index:-1;opacity:.9}
 
   .clients{border-block:1px solid var(--line);margin-top:clamp(56px,7vw,96px);padding-block:22px}
   .clients .wrap{display:flex;flex-wrap:wrap;gap:12px 36px;align-items:baseline;font-family:var(--mono);font-size:13px;color:var(--mute)}
@@ -168,7 +168,9 @@
   .founder .role{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--copper-ink);margin-bottom:22px}
   .founder .bio{color:var(--ink-2);font-size:17px;max-width:62ch}
   .founder .bio + .bio{margin-top:14px}
-  .cv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:clamp(40px,5vw,56px)}
+  .cv-fold{margin-top:clamp(40px,5vw,56px)}
+  .cv-fold>summary{display:none}
+  .cv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
   .cv h4{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--copper-ink);margin:0 0 16px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
   .cv ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
   .cv li{display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px;font-size:15px;line-height:1.5;color:var(--ink-2)}
@@ -221,8 +223,84 @@
   }
   @media (max-width:640px){
     .links{display:none}
-    .domains .row,.process ol,.svc,.sessions{grid-template-columns:1fr}
+    .brand span{display:none}
+    .brand b{font-size:18px}
+    .nav .wrap{gap:10px}
+    .nav .btn-primary{padding:9px 14px;font-size:14px}
+    .lang{padding:6px 10px}
     body{font-size:16px}
+    .domains .row{grid-template-columns:1fr}
+
+    /* the page was 20 screens tall on a phone; these claw most of it back */
+    .sec{padding-block:52px}
+    .hero{padding-block:32px 0}
+    .hero .wrap{gap:30px}
+    .sec-head{margin-bottom:30px;gap:14px}
+    .lede{font-size:17px}
+
+    /* six service cards stacked was the single tallest block: swipe instead */
+    .svc,.sessions{grid-template-columns:none;grid-auto-flow:column;gap:14px;
+      overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+      padding:2px 24px 16px;margin-inline:-24px;scrollbar-width:none;-ms-overflow-style:none}
+    .svc::-webkit-scrollbar,.sessions::-webkit-scrollbar{display:none}
+    .svc>li,.sessions>.figure{scroll-snap-align:center}
+    .svc{grid-auto-columns:80%}
+    .sessions{grid-auto-columns:74%;margin-top:32px}
+    .svc li{padding:22px 20px;gap:10px}
+    .svc .out{padding-top:12px}
+
+    .process ol{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .process h3{font-size:17px;margin:6px 0}
+    .process p{font-size:14px}
+
+    .domains .row>div{padding:20px 18px}
+    .domains p{font-size:16px}
+
+    .fgm{gap:14px}
+    .founder .bio{font-size:16px}
+    .founder .bio+.bio{margin-top:10px}
+    .portrait img{max-width:150px}
+    .facts div{grid-template-columns:104px minmax(0,1fr);gap:14px;padding:12px 0}
+
+    /* the client list wrapped onto five lines; let it scroll on one */
+    .clients{margin-top:44px;padding-block:16px}
+    .clients .wrap{flex-wrap:nowrap;overflow-x:auto;gap:0 26px;padding-bottom:2px;
+      scrollbar-width:none;-ms-overflow-style:none}
+    .clients .wrap::-webkit-scrollbar{display:none}
+    .clients .wrap>*{white-space:nowrap;flex:none}
+
+    .hero .cta{margin-top:26px;gap:10px}
+    .hero .cta .btn{flex:1 1 auto;justify-content:center}
+    .hero h1{font-size:40px}
+
+    .domains .row{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .domains .row>div{padding:18px 15px}
+    .domains h3{font-size:19px;margin-bottom:6px}
+    .domains p{font-size:14.5px}
+
+    .fgm{margin-top:38px;padding-top:30px}
+    .fgm p{font-size:16px}
+    .fgm p+p{margin-top:10px}
+
+    .portrait img{max-width:132px}
+    .founder .intro{gap:20px}
+    .founder h3{font-size:28px}
+
+    .quote{margin-top:40px}
+    .field .note{padding:20px;margin-top:20px}
+    .path{padding:20px 18px}
+    .paths{gap:12px}
+
+    /* folded CV: the summary becomes the control */
+    .cv-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;
+      cursor:pointer;list-style:none;padding:14px 0;border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--copper-ink)}
+    .cv-fold>summary::-webkit-details-marker{display:none}
+    .cv-fold>summary::after{content:"+";font-size:17px;line-height:1}
+    .cv-fold[open]>summary::after{content:"–"}
+    .cv-fold[open]>summary{border-bottom:0}
+    .cv{gap:26px;margin-top:20px}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -248,8 +326,9 @@
   [dir="rtl"] .quote p{font-style:normal;font-size:clamp(25px,3.1vw,38px);line-height:1.6}
   [dir="rtl"] .lede{line-height:1.9}
   [dir="rtl"] .btn svg,[dir="rtl"] .path h3 svg{transform:scaleX(-1)}
-  [dir="rtl"] .hero .figure::before{inset:auto auto -14px -14px}
+  [dir="rtl"] .hero .figure::before{inset:-14px auto auto -14px}
   [dir="rtl"] .process .n::before{content:"الخطوة " counter(step,arabic-indic)}
+  [dir="rtl"] .cv-fold>summary{letter-spacing:normal;font-size:13px}
   [dir="rtl"] .facts dd,[dir="rtl"] .topics li,[dir="rtl"] .brand span{font-weight:500}
   [dir="rtl"] .details{line-height:2.2}
   [dir="rtl"] .cv li{grid-template-columns:96px minmax(0,1fr)}

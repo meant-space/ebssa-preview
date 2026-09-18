@@ -130,7 +130,7 @@
         <h2>What we deliver</h2>
         <p class="lede">Every engagement is scoped around the decision it needs to inform. These are the services EBSSA has refined over more than two decades of work in Sudan.</p>
       </div>
-      <ul class="svc">
+      <ul class="svc" aria-label="Services">
         <li class="card">
           <h3>Research design &amp; policy research</h3>
           <p>Evidence-based studies framed around a real policy or programme question, from literature review to final recommendations.</p>
@@ -296,39 +296,42 @@
             <p class="bio">Her research concentrates on social practices that violate human rights, using structural equation modelling and statistical analysis to test whether programmes actually shift behaviour, and what drives the change. Her published work on female genital mutilation has appeared in the Global Health Journal and been presented at international conferences.</p>
           </div>
         </div>
-        <div class="cv">
-          <div>
-            <h4>Education</h4>
-            <ul>
-              <li><b>1992</b><span>BSc Econometrics and Social Statistics, University of Khartoum</span></li>
-              <li><b>2002</b><span>MSc Economics, University of Khartoum</span></li>
-              <li><b>2004</b><span>Diploma in Marketing, London Chamber of Commerce and Industry</span></li>
-              <li><b>2023</b><span>PhD Business Administration, European University Cyprus</span></li>
-            </ul>
+        <details class="cv-fold" open>
+          <summary>Curriculum vitae</summary>
+          <div class="cv">
+            <div>
+              <h4>Education</h4>
+              <ul>
+                <li><b>1992</b><span>BSc Econometrics and Social Statistics, University of Khartoum</span></li>
+                <li><b>2002</b><span>MSc Economics, University of Khartoum</span></li>
+                <li><b>2004</b><span>Diploma in Marketing, London Chamber of Commerce and Industry</span></li>
+                <li><b>2023</b><span>PhD Business Administration, European University Cyprus</span></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Career</h4>
+              <ul>
+                <li><b>1993–94</b><span>Project Coordinator, UNDP</span></li>
+                <li><b>1994–95</b><span>Office Manager, USAID</span></li>
+                <li><b>2003–</b><span>Founder and Director, EBSSA Research Center</span></li>
+                <li><b>2010</b><span>Lecturer, University of Khartoum</span></li>
+                <li><b>2011–12</b><span>Lecturer, Ahfad University, Omdurman</span></li>
+                <li><b>2012–17</b><span>Research Consultant, UNICEF</span></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Research focus &amp; contributions</h4>
+              <ul class="focus">
+                <li>Social practices that violate human rights, including FGM</li>
+                <li>Structural equation modelling and statistical analysis of behaviour change</li>
+                <li>Evaluating programme effectiveness with UNICEF and other NGOs</li>
+                <li>Published in the Global Health Journal; presented at WASET 2023 and the World Conference on Gender and Women's Studies, Manchester, 2024</li>
+                <li>Doctoral colloquia in Berlin (2019), Nicosia (2020) and Cyprus (2022)</li>
+                <li><a href="https://orcid.org/0009-0007-1058-7174" rel="noopener">ORCID 0009-0007-1058-7174</a></li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <h4>Career</h4>
-            <ul>
-              <li><b>1993–94</b><span>Project Coordinator, UNDP</span></li>
-              <li><b>1994–95</b><span>Office Manager, USAID</span></li>
-              <li><b>2003–</b><span>Founder and Director, EBSSA Research Center</span></li>
-              <li><b>2010</b><span>Lecturer, University of Khartoum</span></li>
-              <li><b>2011–12</b><span>Lecturer, Ahfad University, Omdurman</span></li>
-              <li><b>2012–17</b><span>Research Consultant, UNICEF</span></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Research focus &amp; contributions</h4>
-            <ul class="focus">
-              <li>Social practices that violate human rights, including FGM</li>
-              <li>Structural equation modelling and statistical analysis of behaviour change</li>
-              <li>Evaluating programme effectiveness with UNICEF and other NGOs</li>
-              <li>Published in the Global Health Journal; presented at WASET 2023 and the World Conference on Gender and Women's Studies, Manchester, 2024</li>
-              <li>Doctoral colloquia in Berlin (2019), Nicosia (2020) and Cyprus (2022)</li>
-              <li><a href="https://orcid.org/0009-0007-1058-7174" rel="noopener">ORCID 0009-0007-1058-7174</a></li>
-            </ul>
-          </div>
-        </div>
+        </details>
       </div>
     </div>
   </section>
@@ -397,6 +400,21 @@
       c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
       c.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
     },{passive:true});
+  })();
+
+  (function(){
+    var mq=window.matchMedia('(max-width:640px)');
+    var fold=document.querySelector('.cv-fold');
+    var scrollers=[document.querySelector('.svc'),document.querySelector('.sessions')].filter(Boolean);
+    function apply(){
+      if(fold) fold.open=!mq.matches;
+      scrollers.forEach(function(s){
+        if(mq.matches){ s.setAttribute('tabindex','0'); s.setAttribute('role','group'); }
+        else { s.removeAttribute('tabindex'); s.removeAttribute('role'); }
+      });
+    }
+    apply();
+    mq.addEventListener?mq.addEventListener('change',apply):mq.addListener(apply);
   })();
 </script>
 </body>
