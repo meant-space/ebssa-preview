@@ -196,6 +196,19 @@
 
   footer{border-top:1px solid var(--line);padding:32px 0 40px;font-family:var(--mono);font-size:12.5px;color:var(--mute)}
   footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+  .maker{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--mute);
+    font-family:var(--mono);font-size:12px;letter-spacing:.05em;transition:color .3s ease}
+  .maker:hover{color:var(--copper-ink)}
+  .maker b{font-weight:500}
+  .maker-mark{position:relative;display:inline-block;width:16px;height:15.5px;flex:none}
+  /* url() in a stylesheet resolves against the stylesheet, so this works from / and /ar/ alike */
+  .maker-mark::before,.maker-mark::after{content:"";position:absolute;inset:0;transition:opacity .3s ease}
+  .maker-mark::before{background:url(images/meant-mark.png) center/contain no-repeat}
+  .maker-mark::after{opacity:0;background:currentColor;
+    -webkit-mask:url(images/meant-mark.png) center/contain no-repeat;
+            mask:url(images/meant-mark.png) center/contain no-repeat}
+  .maker:hover .maker-mark::before{opacity:0}
+  .maker:hover .maker-mark::after{opacity:1}
 
   @media (max-width:900px){
     .hero .wrap,.founder .intro,.cv,.sessions,.confluence .grid,.field .grid,.sec.community .grid,.fgm,.about .grid,.contact .grid,.sec-head{grid-template-columns:1fr}
@@ -214,7 +227,7 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .river.armed .draw path{stroke-dashoffset:0;animation:none}
-    .btn,.path,.svc li,.card{transition:none}
+    .btn,.path,.svc li,.card,.maker,.maker-mark::before,.maker-mark::after{transition:none}
     .card:hover{transform:none}
   }
 
