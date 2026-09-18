@@ -109,6 +109,22 @@
   .work-list .with{font-family:var(--mono);font-size:12.5px;color:var(--mute);line-height:1.7;
     margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
 
+
+  /* ---- card rail controls (shown only when the rail is active) -------- */
+  .cnav{display:none;align-items:center;justify-content:flex-end;gap:14px;margin:0 0 18px}
+  .cnav-track{flex:0 1 200px;height:2px;background:var(--line);border-radius:2px;position:relative;overflow:hidden}
+  .cnav-thumb{position:absolute;inset-block:0;inset-inline-start:0;width:33%;background:var(--copper);
+    border-radius:2px;transition:inset-inline-start .28s ease,width .28s ease}
+  .cnav-btn{width:38px;height:38px;flex:none;border-radius:50%;border:1px solid var(--line);
+    background:var(--paper);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;
+    transition:border-color .2s ease,color .2s ease}
+  .cnav-btn svg{width:16px;height:16px}
+  .cnav-prev svg{transform:scaleX(-1)}
+  .cnav-btn:hover:not(:disabled){border-color:var(--copper);color:var(--copper-ink)}
+  .cnav-btn:disabled{opacity:.3;cursor:default}
+  [dir="rtl"] .cnav-next svg{transform:scaleX(-1)}
+  [dir="rtl"] .cnav-prev svg{transform:none}
+
   /* ---------- confluence ---------- */
   .confluence .grid{display:grid;grid-template-columns:minmax(0,1fr) 140px minmax(0,1fr);gap:24px;align-items:stretch}
   .current h3{font-size:clamp(26px,2.6vw,34px);margin-bottom:14px}
@@ -309,6 +325,23 @@
   .maker:hover .maker-mark::before{opacity:0}
   .maker:hover .maker-mark::after{opacity:1}
 
+
+  /* Nine service cards in three rows, and six project cards in two, were
+     the two blocks that ran past a laptop screen. Above a 1000px-tall
+     viewport they stay as grids; below it they become one scrolling row. */
+  @media (min-width:641px) and (max-height:1000px){
+    .svc,.work-list{grid-template-columns:none;grid-auto-flow:column;
+      grid-auto-columns:calc((100% - 40px)/3);
+      overflow-x:auto;overscroll-behavior-x:contain;
+      scroll-snap-type:x mandatory;scroll-padding-inline:24px;
+      padding:2px 24px 14px;margin-inline:-24px;
+      scrollbar-width:none;-ms-overflow-style:none}
+    .svc::-webkit-scrollbar,.work-list::-webkit-scrollbar{display:none}
+    .svc>li,.work-list>li{scroll-snap-align:start}
+    .svc:focus-visible,.work-list:focus-visible{outline:3px solid var(--copper-ink);outline-offset:4px}
+    .cnav{display:flex}
+  }
+
   @media (max-width:900px){
     .hero .wrap,.founder .intro,.cv,.sessions,.confluence .grid,.field .grid,.sec.community .grid,.saleema .grid,.fgm,.about .grid,.contact .grid,.sec-head{grid-template-columns:1fr}
     .hero .figure{order:-1}
@@ -424,7 +457,7 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .river.armed .draw path{stroke-dashoffset:0;animation:none}
-    .btn,.path,.svc li,.card,.maker,.partner-band a,.partner-band .lg,.maker-mark::before,.maker-mark::after{transition:none}
+    .btn,.path,.svc li,.card,.maker,.partner-band a,.partner-band .lg,.maker-mark::before,.maker-mark::after,.cnav-thumb,.cnav-btn{transition:none}
     .card:hover{transform:none}
 
   }

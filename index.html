@@ -172,7 +172,12 @@
         <h2>What we deliver</h2>
         <p class="lede">Every engagement is scoped around the decision it needs to inform, quantitative or qualitative, large or small. EBSSA works on research method and nothing else, which is why it knows what these studies demand.</p>
       </div>
-      <ul class="svc" aria-label="Services">
+      <div class="cnav" data-scroller="svc">
+          <span class="cnav-track" aria-hidden="true"><span class="cnav-thumb"></span></span>
+          <button type="button" class="cnav-btn cnav-prev" aria-label="Previous services"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+          <button type="button" class="cnav-btn cnav-next" aria-label="Next services"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+        </div>
+        <ul class="svc" aria-label="Services">
         <li class="card">
           <h3>Research design &amp; policy research</h3>
           <p>Evidence-based studies framed around a real policy or programme question, from literature review to final recommendations.</p>
@@ -243,7 +248,12 @@
         <h2>Selected work</h2>
         <p class="lede">A record of projects designed, run and delivered to exacting standards. Named studies, with where each happened, the method used and who it was with.</p>
       </div>
-      <ol class="work-list">
+      <div class="cnav" data-scroller="work-list">
+          <span class="cnav-track" aria-hidden="true"><span class="cnav-thumb"></span></span>
+          <button type="button" class="cnav-btn cnav-prev" aria-label="Previous projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+          <button type="button" class="cnav-btn cnav-next" aria-label="Next projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+        </div>
+        <ol class="work-list">
         <li class="card">
           <img src="images/womens-workshop.jpg" loading="lazy" alt="Women in brightly patterned tobes seated around a table at a Saleema evaluation workshop while a facilitator enters data on a laptop.">
           <div class="body">
@@ -604,18 +614,78 @@
   })();
 
   (function(){
-    var mq=window.matchMedia('(max-width:640px)');
-    var fold=document.querySelector('.cv-fold');
-    var scrollers=[document.querySelector('.svc'),document.querySelector('.sessions')].filter(Boolean);
+    var phone=window.matchMedia('(max-width:640px)');
+    var rail =window.matchMedia('(min-width:641px) and (max-height:1000px)');
+    var tall =window.matchMedia('(min-height:1000px)');
+    var folds=[].slice.call(document.querySelectorAll('.cv-fold'));
+    var scrollers=[].slice.call(document.querySelectorAll('.svc,.sessions,.work-list'));
+
     function apply(){
-      if(fold) fold.open=!mq.matches;
+      /* the CV runs to about 400px: worth having open on a tall display,
+         but on a laptop it is most of a screen before the section ends */
+      folds.forEach(function(f){ f.open=!phone.matches && tall.matches; });
       scrollers.forEach(function(s){
-        if(mq.matches){ s.setAttribute('tabindex','0'); s.setAttribute('role','group'); }
+        var swipes=phone.matches||(rail.matches&&!/sessions/.test(s.className));
+        if(swipes){ s.setAttribute('tabindex','0'); s.setAttribute('role','group'); }
         else { s.removeAttribute('tabindex'); s.removeAttribute('role'); }
       });
+      navs.forEach(function(n){ n.sync(); });
     }
+
+    /* prev/next for the laptop card rails. Everything is driven off
+       scrollIntoView and getBoundingClientRect rather than scrollLeft,
+       because scrollLeft's sign in RTL differs between engines. */
+    var navs=[].slice.call(document.querySelectorAll('.cnav')).map(function(nav){
+      var list=nav.parentNode.querySelector('.'+nav.getAttribute('data-scroller'));
+      if(!list) return {sync:function(){}};
+      var prev=nav.querySelector('.cnav-prev'),
+          next=nav.querySelector('.cnav-next'),
+          thumb=nav.querySelector('.cnav-thumb'),
+          kids=[].slice.call(list.children);
+
+      function rtl(){ return getComputedStyle(list).direction==='rtl'; }
+      function startOf(el){ var r=el.getBoundingClientRect(); return rtl()?-r.right:r.left; }
+      function perView(){
+        var w=kids[0]?kids[0].getBoundingClientRect().width:1;
+        return Math.max(1,Math.round(list.clientWidth/w));
+      }
+      function current(){
+        var base=startOf(list), best=0, dist=Infinity;
+        kids.forEach(function(k,i){
+          var d=Math.abs(startOf(k)-base);
+          if(d<dist){ dist=d; best=i; }
+        });
+        return best;
+      }
+      function go(delta){
+        var per=perView(), max=Math.max(0,kids.length-per);
+        var i=Math.min(max,Math.max(0,current()+delta*per));
+        kids[i].scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'});
+      }
+      function sync(){
+        var on=list.scrollWidth>list.clientWidth+4;
+        nav.style.visibility=on?'':'hidden';
+        if(!on) return;
+        var per=perView(), max=Math.max(0,kids.length-per), i=Math.min(max,current());
+        prev.disabled=i<=0; next.disabled=i>=max;
+        thumb.style.width=(per/kids.length*100)+'%';
+        thumb.style.insetInlineStart=(i/kids.length*100)+'%';
+      }
+      prev.addEventListener('click',function(){ go(-1); });
+      next.addEventListener('click',function(){ go(1); });
+      list.addEventListener('scroll',function(){
+        clearTimeout(nav._t); nav._t=setTimeout(sync,90);
+      },{passive:true});
+      return {sync:sync};
+    });
+
     apply();
-    mq.addEventListener?mq.addEventListener('change',apply):mq.addListener(apply);
+    [phone,rail,tall].forEach(function(m){
+      m.addEventListener?m.addEventListener('change',apply):m.addListener(apply);
+    });
+    window.addEventListener('resize',function(){
+      clearTimeout(window._cn); window._cn=setTimeout(apply,120);
+    },{passive:true});
   })();
 </script>
 
