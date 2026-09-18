@@ -89,6 +89,8 @@
   .partner-band .l-meant {--s:url(images/partners/meant-mask.png); height:26px;width:126px}
   .partner-band .l-nccw  {--s:url(images/partners/nccw-mask.png);  height:30px;width:35px}
   .partner-band .l-uofk  {--s:url(images/partners/uofk-mask.png);  height:30px;width:29px}
+  .partner-band .l-fmoh  {--s:url(images/partners/fmoh-mask.png);  height:31px;width:33px}
+  .partner-band .l-auw   {--s:url(images/partners/auw-mask.png);   height:31px;width:31px}
 
   /* ---------- selected work ---------- */
   .work-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -339,6 +341,8 @@
     .partner-band .l-meant {height:19px;width:92px}
     .partner-band .l-nccw  {height:22px;width:26px}
     .partner-band .l-uofk  {height:22px;width:21px}
+    .partner-band .l-fmoh  {height:23px;width:24px}
+    .partner-band .l-auw   {height:23px;width:23px}
 
     .hero .cta{margin-top:26px;gap:10px}
     .hero .cta .btn{flex:1 1 auto;justify-content:center}
