@@ -74,13 +74,21 @@
   .marquee b{font-family:var(--mono);font-weight:500;font-size:14px;color:var(--ink);
     white-space:nowrap;padding-inline:22px;display:flex;align-items:center;gap:22px}
   .marquee b::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--copper);flex:none}
+  /* logo-ready: drop an <img> inside a marquee item and it takes over from the name.
+     Heights are normalised so wordmarks and roundels sit on one optical line. */
+  .marquee b img{height:34px;width:auto;max-width:170px;object-fit:contain;display:block;
+    filter:grayscale(1) opacity(.65);transition:filter .3s ease}
+  .marquee b:hover img{filter:grayscale(0) opacity(1)}
+  .marquee b:has(img){padding-inline:26px}
   @keyframes marquee{to{transform:translateX(-50%)}}
   [dir="rtl"] .marquee .track{animation-name:marquee-rtl}
   @keyframes marquee-rtl{to{transform:translateX(50%)}}
 
   /* ---------- selected work ---------- */
   .work-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-  .work-list li{display:flex;flex-direction:column;gap:10px;padding:26px 24px}
+  .work-list li{display:flex;flex-direction:column;padding:0;overflow:hidden}
+  .work-list li>img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+  .work-list .body{display:flex;flex-direction:column;gap:10px;padding:22px 24px 24px;flex:1}
   .work-list .yr{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--copper-ink)}
   .work-list h3{font-size:clamp(19px,1.7vw,23px)}
   .work-list p{color:var(--ink-2);font-size:16px}
@@ -209,7 +217,7 @@
   .cv a{color:var(--copper-ink);text-decoration-thickness:1px;text-underline-offset:3px}
 
   /* ---------- session strip ---------- */
-  .sessions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:clamp(40px,5vw,64px)}
+  .sessions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:clamp(40px,5vw,64px)}
   .sessions .figure img{border-radius:10px;box-shadow:none;object-fit:cover;width:100%;aspect-ratio:4/3}
 
   /* ---------- contact ---------- */
@@ -284,7 +292,8 @@
     .svc>li,.sessions>.figure,.work-list>li{scroll-snap-align:center}
     .svc,.work-list{grid-auto-columns:80%}
     .sessions{grid-auto-columns:74%;margin-top:32px}
-    .svc li,.work-list li{padding:22px 20px;gap:10px}
+    .svc li{padding:22px 20px;gap:10px}
+    .work-list .body{padding:18px 20px 20px}
     .svc .out,.work-list .with{padding-top:12px}
 
     .process ol{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
