@@ -36,7 +36,7 @@
   .nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px;flex-wrap:wrap;padding-block:10px}
   .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-  .brand svg{width:30px;height:30px;flex:none}
+  .brand svg,.brand img{width:30px;height:30px;flex:none;display:block}
   .brand b{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em}
   .brand span{font-family:var(--display);font-weight:400;color:var(--mute);font-size:15px}
   .links{display:flex;gap:26px;align-items:center;font-family:var(--display);font-size:15px}
