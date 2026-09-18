@@ -158,6 +158,11 @@
   .facts dt{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding-top:4px}
   .facts dd{margin:0;font-family:var(--display);font-size:19px;font-weight:500}
 
+  /* a full-width figure that keeps its own proportions — these are group and
+     conference photographs, where cropping to a house ratio cuts people out */
+  .figure-wide{margin-top:clamp(36px,4vw,52px);max-width:720px}
+  .figure-wide img{aspect-ratio:auto;height:auto}
+
   /* ---------- founder ---------- */
   .founder{margin-top:clamp(56px,7vw,96px);border-top:1px solid var(--line);padding-top:clamp(40px,5vw,64px)}
   .founder .intro{display:grid;grid-template-columns:200px minmax(0,1fr);gap:44px;align-items:start}
@@ -231,6 +236,7 @@
     .brand svg,.brand img{width:36px;height:36px}
     .brand{gap:9px}
     .nav .wrap{min-height:68px}
+    .figure-wide{margin-top:28px}
     .fbrand{gap:14px}
     .fbrand>img{width:46px}
     .nav .wrap{gap:10px}
