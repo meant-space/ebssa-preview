@@ -1,0 +1,29 @@
+{
+  "name": "EBSSA Research Center",
+  "short_name": "EBSSA",
+  "lang": "en",
+  "dir": "ltr",
+  "description": "A Sudanese research institution delivering research, statistical analysis, monitoring and evaluation, and community development since 2003.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#F8F5EF",
+  "theme_color": "#F8F5EF",
+  "icons": [
+    {
+      "src": "/images/ebssa-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/ebssa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/ebssa-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

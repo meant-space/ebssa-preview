@@ -18,8 +18,13 @@
   :where(section,div,h2,h3,article)[id]{scroll-margin-top:calc(var(--nav-h) + 18px)}
   body{margin:0;overflow-x:clip;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
   img{max-width:100%;display:block;height:auto}
+  picture{display:contents}
   a{color:inherit}
   :focus-visible{outline:3px solid var(--copper-ink);outline-offset:3px;border-radius:2px}
+  .skip{position:absolute;inset-inline-start:-9999px;top:8px;z-index:60;
+    background:var(--paper);color:var(--copper-ink);border:1px solid var(--copper);
+    border-radius:6px;padding:10px 16px;font-family:var(--mono);font-size:13px;text-decoration:none}
+  .skip:focus{inset-inline-start:12px}
   h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-height:1.05;margin:0;text-wrap:balance}
   p{margin:0}
   .wrap{width:min(1180px,calc(100% - 48px));margin-inline:auto}
@@ -101,7 +106,7 @@
   /* ---------- selected work ---------- */
   .work-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
   .work-list li{display:flex;flex-direction:column;padding:0;overflow:hidden}
-  .work-list li>img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+  .work-list li img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
   .work-list .body{display:flex;flex-direction:column;gap:10px;padding:clamp(16px,1.84vh,22px) 24px clamp(17px,2vh,24px);flex:1}
   .work-list .yr{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--copper-ink)}
   .work-list h3{font-size:clamp(19px,1.7vw,23px)}
