@@ -63,6 +63,30 @@
   .clients b{font-weight:500;color:var(--ink)}
   .clients span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--copper);margin-inline-end:10px;vertical-align:middle}
 
+  /* ---------- partner marquee ---------- */
+  .clients .label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--mute);margin:0 0 12px}
+  .marquee{overflow:hidden;position:relative;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .marquee .track{display:flex;width:max-content;animation:marquee 46s linear infinite}
+  .marquee:hover .track,.marquee:focus-within .track{animation-play-state:paused}
+  .marquee b{font-family:var(--mono);font-weight:500;font-size:14px;color:var(--ink);
+    white-space:nowrap;padding-inline:22px;display:flex;align-items:center;gap:22px}
+  .marquee b::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--copper);flex:none}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+  [dir="rtl"] .marquee .track{animation-name:marquee-rtl}
+  @keyframes marquee-rtl{to{transform:translateX(50%)}}
+
+  /* ---------- selected work ---------- */
+  .work-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .work-list li{display:flex;flex-direction:column;gap:10px;padding:26px 24px}
+  .work-list .yr{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--copper-ink)}
+  .work-list h3{font-size:clamp(19px,1.7vw,23px)}
+  .work-list p{color:var(--ink-2);font-size:16px}
+  .work-list .with{font-family:var(--mono);font-size:12.5px;color:var(--mute);line-height:1.7;
+    margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
+
   /* ---------- confluence ---------- */
   .confluence .grid{display:grid;grid-template-columns:minmax(0,1fr) 140px minmax(0,1fr);gap:24px;align-items:stretch}
   .current h3{font-size:clamp(26px,2.6vw,34px);margin-bottom:14px}
@@ -224,7 +248,7 @@
     .hero .wrap,.founder .intro,.cv,.sessions,.confluence .grid,.field .grid,.sec.community .grid,.fgm,.about .grid,.contact .grid,.sec-head{grid-template-columns:1fr}
     .hero .figure{order:-1}
     .river{display:none}
-    .svc{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .svc,.work-list{grid-template-columns:repeat(2,minmax(0,1fr))}
     .sessions{grid-template-columns:repeat(2,minmax(0,1fr))}
     .domains .row{grid-template-columns:repeat(2,minmax(0,1fr))}
     .process ol{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -253,15 +277,15 @@
     .lede{font-size:17px}
 
     /* six service cards stacked was the single tallest block: swipe instead */
-    .svc,.sessions{grid-template-columns:none;grid-auto-flow:column;gap:14px;
+    .svc,.sessions,.work-list{grid-template-columns:none;grid-auto-flow:column;gap:14px;
       overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
       padding:2px 24px 16px;margin-inline:-24px;scrollbar-width:none;-ms-overflow-style:none}
     .svc::-webkit-scrollbar,.sessions::-webkit-scrollbar{display:none}
-    .svc>li,.sessions>.figure{scroll-snap-align:center}
-    .svc{grid-auto-columns:80%}
+    .svc>li,.sessions>.figure,.work-list>li{scroll-snap-align:center}
+    .svc,.work-list{grid-auto-columns:80%}
     .sessions{grid-auto-columns:74%;margin-top:32px}
-    .svc li{padding:22px 20px;gap:10px}
-    .svc .out{padding-top:12px}
+    .svc li,.work-list li{padding:22px 20px;gap:10px}
+    .svc .out,.work-list .with{padding-top:12px}
 
     .process ol{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
     .process h3{font-size:17px;margin:6px 0}
@@ -319,8 +343,10 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .river.armed .draw path{stroke-dashoffset:0;animation:none}
-    .btn,.path,.svc li,.card,.maker,.maker-mark::before,.maker-mark::after{transition:none}
+    .btn,.path,.svc li,.card,.maker,.marquee .track,.maker-mark::before,.maker-mark::after{transition:none}
     .card:hover{transform:none}
+    .marquee .track{animation:none;width:auto;flex-wrap:wrap;gap:4px 0}
+    .marquee{-webkit-mask-image:none;mask-image:none}
   }
 
   /* ================= Arabic / right-to-left ================= */
