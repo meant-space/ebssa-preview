@@ -60,31 +60,20 @@
 
   .clients{border-block:1px solid var(--line);margin-top:clamp(56px,7vw,96px);padding-block:26px}
   .clients .wrap{display:flex;flex-wrap:wrap;gap:12px 36px;align-items:baseline;font-family:var(--mono);font-size:13px;color:var(--mute)}
-  .clients b{font-weight:500;color:var(--ink)}
-  .clients span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--copper);margin-inline-end:10px;vertical-align:middle}
 
-  /* ---------- partner marquee ---------- */
+  /* ---------- partner banner ---------- */
   .clients .label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--mute);margin:0 0 12px}
-  .marquee{overflow:hidden;position:relative;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
-            mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-  .marquee .track{display:flex;width:max-content;animation:marquee 46s linear infinite}
-  .marquee:hover .track,.marquee:focus-within .track{animation-play-state:paused}
-  .marquee b{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.5vw,21px);
-    letter-spacing:-.01em;color:var(--ink-2);
-    white-space:nowrap;padding-inline:26px;display:flex;align-items:center;gap:26px}
-  .marquee b::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--copper);flex:none}
-  /* logo-ready: drop an <img> inside a marquee item and it takes over from the name.
-     Heights are normalised so wordmarks and roundels sit on one optical line. */
-  .marquee b img{height:38px;width:auto;max-width:200px;object-fit:contain;display:block;
-    filter:grayscale(1) opacity(.6);transition:filter .3s ease}
-  .marquee b:hover img{filter:grayscale(0) opacity(1)}
-  .marquee b:has(img){padding-inline:26px}
-  @keyframes marquee{to{transform:translateX(-50%)}}
-  [dir="rtl"] .marquee b{letter-spacing:normal}
-  [dir="rtl"] .marquee .track{animation-name:marquee-rtl}
-  @keyframes marquee-rtl{to{transform:translateX(50%)}}
+    color:var(--mute);margin:0 0 18px;text-align:center}
+  .partner-band{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+    justify-content:center;align-items:center;gap:8px 36px}
+  .partner-band a,.partner-band > li > span{display:inline-flex;align-items:center;gap:10px;
+    min-height:54px;padding:4px 2px;text-decoration:none;
+    font-family:var(--display);font-weight:500;font-size:15.5px;line-height:1.25;
+    color:var(--ink-2);transition:color .3s ease}
+  .partner-band a:hover,.partner-band a:focus-visible{color:var(--copper-ink)}
+  .partner-band img{height:32px;width:auto;max-width:152px;object-fit:contain;display:block;
+    filter:grayscale(1) opacity(.58);transition:filter .3s ease}
+  .partner-band a:hover img,.partner-band a:focus-visible img{filter:grayscale(0) opacity(1)}
 
   /* ---------- selected work ---------- */
   .work-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -313,10 +302,10 @@
 
     /* the client list wrapped onto five lines; let it scroll on one */
     .clients{margin-top:44px;padding-block:16px}
-    .clients .wrap{flex-wrap:nowrap;overflow-x:auto;gap:0 26px;padding-bottom:2px;
-      scrollbar-width:none;-ms-overflow-style:none}
-    .clients .wrap::-webkit-scrollbar{display:none}
-    .clients .wrap>*{white-space:nowrap;flex:none}
+    .clients .label{margin-bottom:12px}
+    .partner-band{gap:2px 18px}
+    .partner-band a,.partner-band > li > span{font-size:13.5px;min-height:34px;gap:7px;padding:2px}
+    .partner-band img{height:24px;max-width:108px}
 
     .hero .cta{margin-top:26px;gap:10px}
     .hero .cta .btn{flex:1 1 auto;justify-content:center}
@@ -354,10 +343,9 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .river.armed .draw path{stroke-dashoffset:0;animation:none}
-    .btn,.path,.svc li,.card,.maker,.marquee .track,.maker-mark::before,.maker-mark::after{transition:none}
+    .btn,.path,.svc li,.card,.maker,.partner-band a,.partner-band img,.maker-mark::before,.maker-mark::after{transition:none}
     .card:hover{transform:none}
-    .marquee .track{animation:none;width:auto;flex-wrap:wrap;gap:4px 0}
-    .marquee{-webkit-mask-image:none;mask-image:none}
+
   }
 
   /* ================= Arabic / right-to-left ================= */
