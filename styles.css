@@ -71,15 +71,23 @@
     font-family:var(--display);font-weight:500;font-size:15.5px;line-height:1.25;
     color:var(--ink-2);transition:color .3s ease}
   .partner-band a:hover,.partner-band a:focus-visible{color:var(--copper-ink)}
-  /* one height across three lockups made them read unevenly: unicef is a large
-     wordmark, who stacks two lines of small type inside its height. Sized by
-     measured ink area instead, so they carry equal optical weight. */
-  .partner-band img{width:auto;max-width:190px;object-fit:contain;display:block;
-    filter:grayscale(1) opacity(.75);transition:filter .3s ease}
-  .partner-band .l-unicef{height:29px}
-  .partner-band .l-who{height:40px}
-  .partner-band .l-meant{height:32px}
-  .partner-band a:hover img,.partner-band a:focus-visible img{filter:grayscale(0) opacity(1)}
+  /* Logos are drawn as masks filled with currentColor, so each is exactly the
+     colour of the partner names beside it — nothing can read bolder or darker
+     than anything else. Sizes come from measured ink area rather than a shared
+     height, because a wide wordmark and a stacked lockup fill a height very
+     differently. */
+  .partner-band .lg{display:block;background:currentColor;opacity:.92;
+    -webkit-mask-image:var(--s);mask-image:var(--s);
+    -webkit-mask-size:contain;mask-size:contain;
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+    -webkit-mask-position:center;mask-position:center;
+    transition:opacity .3s ease}
+  .partner-band a:hover .lg,.partner-band a:focus-visible .lg{opacity:1}
+  .partner-band .l-unicef{--s:url(images/partners/unicef-mask.png);height:28px;width:116px}
+  .partner-band .l-who   {--s:url(images/partners/who-mask.png);   height:33px;width:108px}
+  .partner-band .l-meant {--s:url(images/partners/meant-mask.png); height:26px;width:126px}
+  .partner-band .l-nccw  {--s:url(images/partners/nccw-mask.png);  height:42px;width:49px}
+  .partner-band .l-uofk  {--s:url(images/partners/uofk-mask.png);  height:42px;width:40px}
 
   /* ---------- selected work ---------- */
   .work-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -150,6 +158,7 @@
   .saleema p+p{margin-top:14px}
   .saleema .lede{margin-bottom:20px}
   .saleema em{font-style:normal;color:var(--copper-ink);font-weight:600}
+  .saleema-logo{height:54px;width:auto;margin-bottom:16px}
   .saleema .facts{margin-top:24px}
   .saleema .figure img{aspect-ratio:3/2}
 
@@ -317,16 +326,18 @@
     .facts div{grid-template-columns:96px minmax(0,1fr);gap:12px;padding:9px 0}
     .saleema p+p{margin-top:11px}
     .saleema .facts{margin-top:18px}
+    .saleema-logo{height:44px;margin-bottom:12px}
 
     /* the client list wrapped onto five lines; let it scroll on one */
     .clients{margin-top:44px;padding-block:16px}
     .clients .label{margin-bottom:12px}
     .partner-band{gap:2px 18px}
     .partner-band a,.partner-band > li > span{font-size:13.5px;min-height:34px;gap:7px;padding:2px}
-    .partner-band img{max-width:140px}
-    .partner-band .l-unicef{height:20px}
-    .partner-band .l-who{height:28px}
-    .partner-band .l-meant{height:22px}
+    .partner-band .l-unicef{height:20px;width:83px}
+    .partner-band .l-who   {height:24px;width:78px}
+    .partner-band .l-meant {height:19px;width:92px}
+    .partner-band .l-nccw  {height:30px;width:35px}
+    .partner-band .l-uofk  {height:30px;width:29px}
 
     .hero .cta{margin-top:26px;gap:10px}
     .hero .cta .btn{flex:1 1 auto;justify-content:center}
@@ -364,7 +375,7 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .river.armed .draw path{stroke-dashoffset:0;animation:none}
-    .btn,.path,.svc li,.card,.maker,.partner-band a,.partner-band img,.maker-mark::before,.maker-mark::after{transition:none}
+    .btn,.path,.svc li,.card,.maker,.partner-band a,.partner-band .lg,.maker-mark::before,.maker-mark::after{transition:none}
     .card:hover{transform:none}
 
   }
