@@ -58,7 +58,7 @@
   .figure figcaption b{color:var(--ink);font-weight:500}
   .hero .figure::before{content:"";position:absolute;inset:-14px -14px auto auto;width:56%;height:46%;background:var(--copper);border-radius:6px;z-index:-1;opacity:.9}
 
-  .clients{border-block:1px solid var(--line);margin-top:clamp(56px,7vw,96px);padding-block:22px}
+  .clients{border-block:1px solid var(--line);margin-top:clamp(56px,7vw,96px);padding-block:26px}
   .clients .wrap{display:flex;flex-wrap:wrap;gap:12px 36px;align-items:baseline;font-family:var(--mono);font-size:13px;color:var(--mute)}
   .clients b{font-weight:500;color:var(--ink)}
   .clients span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--copper);margin-inline-end:10px;vertical-align:middle}
@@ -71,9 +71,10 @@
             mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
   .marquee .track{display:flex;width:max-content;animation:marquee 46s linear infinite}
   .marquee:hover .track,.marquee:focus-within .track{animation-play-state:paused}
-  .marquee b{font-family:var(--mono);font-weight:500;font-size:14px;color:var(--ink);
-    white-space:nowrap;padding-inline:22px;display:flex;align-items:center;gap:22px}
-  .marquee b::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--copper);flex:none}
+  .marquee b{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.5vw,21px);
+    letter-spacing:-.01em;color:var(--ink-2);
+    white-space:nowrap;padding-inline:26px;display:flex;align-items:center;gap:26px}
+  .marquee b::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--copper);flex:none}
   /* logo-ready: drop an <img> inside a marquee item and it takes over from the name.
      Heights are normalised so wordmarks and roundels sit on one optical line. */
   .marquee b img{height:34px;width:auto;max-width:170px;object-fit:contain;display:block;
@@ -81,6 +82,7 @@
   .marquee b:hover img{filter:grayscale(0) opacity(1)}
   .marquee b:has(img){padding-inline:26px}
   @keyframes marquee{to{transform:translateX(-50%)}}
+  [dir="rtl"] .marquee b{letter-spacing:normal}
   [dir="rtl"] .marquee .track{animation-name:marquee-rtl}
   @keyframes marquee-rtl{to{transform:translateX(50%)}}
 
