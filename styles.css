@@ -181,6 +181,7 @@
   .path h3 svg{width:18px;height:18px;flex:none;color:var(--teal)}
   .path p{font-size:16px;color:var(--ink-2)}
   .details{margin-top:28px;font-family:var(--mono);font-size:13.5px;line-height:2;color:var(--ink-2)}
+  .details a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}
   .details .todo{color:var(--saffron-ink);border:1px dashed var(--saffron);border-radius:4px;padding:1px 8px}
 
   footer{border-top:1px solid var(--line);padding:32px 0 40px;font-family:var(--mono);font-size:12.5px;color:var(--mute)}
