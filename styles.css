@@ -49,6 +49,9 @@
   /* ---------- hero ---------- */
   .hero{padding-block:clamp(48px,6vw,88px) 0}
   .hero .wrap{display:grid;grid-template-columns:minmax(0,13fr) minmax(0,10fr);gap:52px;align-items:center}
+  .hero .dateline{display:flex;align-items:center;gap:18px;margin-bottom:26px}
+  .hero .dateline .loc-map{height:112px;width:auto;flex:none}
+  .hero .dateline .eyebrow{margin:0;max-width:30ch}
   .hero h1{font-size:clamp(44px,6.4vw,92px);font-weight:700;font-variation-settings:"opsz" 96;margin-bottom:26px}
   .hero h1 em{font-style:normal;color:var(--copper-ink)}
   .hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
@@ -168,6 +171,38 @@
   /* ---------- field ---------- */
   .field .grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px;align-items:start}
   .field .figure img{aspect-ratio:auto;border-radius:6px;box-shadow:none}
+
+  /* ---- field map ------------------------------------------------------ */
+  .fieldmap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;
+    align-items:center;margin-bottom:44px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+  .fm-map{margin:0}
+  .sudan-map{display:block;width:100%;height:auto}
+  .sudan-map .sea     {fill:#E7EDF0}
+  .sudan-map .nbr     {fill:var(--paper-2);stroke:var(--line);stroke-width:.8;stroke-linejoin:round}
+  .sudan-map .land    {fill:var(--paper);stroke:var(--ink);stroke-width:1.4;stroke-linejoin:round}
+  .sudan-map .disputed{stroke:var(--line);stroke-width:.7}
+  .sudan-map .dsp-l   {stroke:var(--copper);stroke-width:1.1;opacity:.5}
+  .sudan-map .riv     {stroke:#8FA8B8;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .sudan-map .riv-minor{stroke-width:1;opacity:.55}
+  .sudan-map .m-pin   {fill:var(--copper)}
+  .sudan-map .m-pin-hq{fill:var(--copper-ink)}
+  .sudan-map .m-halo  {fill:none;stroke:var(--copper-ink);stroke-width:1.2;opacity:.4}
+  .sudan-map .m-area  {fill:var(--copper);opacity:.14;stroke:var(--copper);stroke-width:1;stroke-dasharray:3 3}
+  .sudan-map .m-num   {font-family:var(--mono);font-size:11px;font-weight:500;fill:var(--paper);
+    text-anchor:middle;dominant-baseline:central}
+  .fm-key .label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--mute);margin:0}
+  .fm-list{list-style:none;counter-reset:fm;margin:14px 0 0;padding:0}
+  .fm-list li{counter-increment:fm;display:grid;grid-template-columns:24px 1fr;
+    column-gap:12px;row-gap:2px;padding:11px 0;border-top:1px solid var(--line)}
+  .fm-list li:first-child{border-top:0}
+  .fm-list li::before{content:counter(fm);grid-row:1 / span 2;
+    width:22px;height:22px;border-radius:50%;background:var(--copper);color:var(--paper);
+    font-family:var(--mono);font-size:11px;font-weight:500;display:grid;place-items:center;margin-top:1px}
+  .fm-list li:first-child::before{background:var(--copper-ink)}
+  .fm-list b{font-size:16px;font-weight:600}
+  .fm-list span{color:var(--ink-2);font-size:14.5px;line-height:1.55}
+  .fm-note{color:var(--mute);font-size:12.5px;line-height:1.5;margin-top:16px}
   .field .note{background:var(--copper-soft);border-radius:6px;padding:28px;margin-top:28px}
   .field .note h3{font-size:22px;margin-bottom:10px}
   .field .note p{color:var(--ink-2);font-size:16px}
@@ -363,6 +398,11 @@
 
     .quote{margin-top:40px}
     .field .note{padding:20px;margin-top:20px}
+    .hero .dateline{gap:13px;margin-bottom:20px}
+    .hero .dateline .loc-map{height:86px}
+    .fieldmap{grid-template-columns:1fr;gap:24px;margin-bottom:32px;padding-bottom:28px}
+    .fm-list li{padding:9px 0}
+    .fm-list span{font-size:14px}
     .path{padding:20px 18px}
     .paths{gap:12px}
 
@@ -419,6 +459,9 @@
   [dir="rtl"] .svc .out{font-size:14px}
   [dir="rtl"] .svc .out b{font-size:12px}
   [dir="rtl"] .domains p,[dir="rtl"] .field .note p,[dir="rtl"] .path p{font-size:17.5px}
+  [dir="rtl"] .fm-list li::before{content:counter(fm, arabic-indic)}
+  [dir="rtl"] .fm-list span{font-size:16px}
+  [dir="rtl"] .fm-note{font-size:14px}
   [dir="rtl"] .process p,[dir="rtl"] .cv li{font-size:16.5px}
   [dir="rtl"] .process .n{font-size:13px}
   [dir="rtl"] .topics li{font-size:16px}
