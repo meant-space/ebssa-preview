@@ -1,16 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.ebssaresearch.org/</loc>
     <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ebssaresearch.org/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ebssaresearch.org/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ebssaresearch.org/"/>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/awareness-session-speaking.jpg</image:loc>
+      <image:title>Dr. Nada Alassad speaking at a community awareness session in a Sudanese village hall</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/village-session-women.jpg</image:loc>
+      <image:title>Women attending an EBSSA awareness session in a village hall</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/workshop-kordofan.jpg</image:loc>
+      <image:title>A Saleema campaign workshop in North Kordofan, run with the state Ministry of Health and the Council for Child Welfare</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/field-interview.jpg</image:loc>
+      <image:title>An EBSSA enumerator recording a key-informant interview in a workshop yard</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/partners-delegation.jpg</image:loc>
+      <image:title>EBSSA staff with a visiting partner delegation</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.ebssaresearch.org/ar/</loc>
     <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.ebssaresearch.org/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.ebssaresearch.org/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ebssaresearch.org/"/>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/awareness-session-speaking.jpg</image:loc>
+      <image:title>الدكتورة ندى الأسد تتحدّث في جلسة توعية مجتمعية بقاعة قرية في السودان</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/village-session-women.jpg</image:loc>
+      <image:title>نساء يحضرن جلسة توعية للمركز في قاعة بالقرية</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/workshop-kordofan.jpg</image:loc>
+      <image:title>ورشة ضمن حملة سليمة بشمال كردفان مع وزارة الصحة بالولاية والمجلس القومي لرعاية الطفولة</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/field-interview.jpg</image:loc>
+      <image:title>باحث ميداني من المركز يسجّل مقابلة مع مصدر رئيسي في فناء ورشة</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.ebssaresearch.org/images/partners-delegation.jpg</image:loc>
+      <image:title>فريق المركز مع وفد شريك زائر</image:title>
+    </image:image>
   </url>
 </urlset>
